@@ -4,12 +4,16 @@
     <span>Angular SSL Outlab-6</span>
     <span class="example-spacer"></span>
     <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      Contact
+      <nav>
+        <a routerLink="/form">Form</a>
+      </nav>
     </button>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      Forms
+      <nav>
+        <a routerLink="/contact">Contact</a>
+      </nav>
     </button>
   </mat-toolbar>
 </p>
-<app-contact></app-contact>
-<app-form></app-form>
+
+<router-outlet></router-outlet>

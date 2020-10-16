@@ -1,32 +1,44 @@
 <h3>Forms</h3>
-
-<label>
-    Name:
-    <input [(ngModel)]="items.name" placeholder="name"/>
-  </label><br>
+<div id="form">
   <label>
-    Email:
-    <input [(ngModel)]="items.email" placeholder="email"/>
-  </label><br>
+      Name:
+      <input [(ngModel)]="items.name" placeholder="name"/>
+    </label><br>
+    <label>
+      Email:
+      <input [(ngModel)]="items.email" placeholder="email"/>
+    </label><br>
+    <label>
+      Comments:
+      <input [(ngModel)]="items.comment" placeholder="comment"/>
+    </label><br>
   <label>
-    Comments:
-    <input [(ngModel)]="items.comment" placeholder="comment"/>
-  </label><br>
- <label>
-  Feedback:
-  <label *ngFor="let item of radioItems">
-    <input type="radio" name="options" (click)="items.feedback = item" 
-     [checked]="item === items.feedback">
-    {{item}}
+    Feedback:
+    <label *ngFor="let item of radioItems">
+      <input type="radio" name="options" (click)="items.feedback = item" 
+      [checked]="item === items.feedback">
+      {{item}}
+    </label>
   </label>
-</label>
+</div>
 <div>
   {{ items.name }}<br>
   {{ items.email }}<br>
   {{ items.comment }}<br>
   {{ items.feedback }}
 </div>
-<button (click)="postRequest()">Submit</button>
+<button (click)="err()">Submit</button>
+
+<div class="postitem" *ngIf="postitem else other">
+  <div class="error" *ngIf="error else success">Submission failed! Try again!</div>
+  <ng-template #success>
+    <div>Feedback registered!</div>
+  </ng-template>
+</div>
+
+<ng-template #other>
+  <div class="error" *ngIf="error">Submission failed! Try again!</div>
+</ng-template>
 
 <div *ngIf="postitem">
   {{ postitem.name }}<br>

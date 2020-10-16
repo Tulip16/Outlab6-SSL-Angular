@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "sslangular"
+  "defaultProject": "sslangular",
+  "cli": {
+    "analytics": false
+  }
 }

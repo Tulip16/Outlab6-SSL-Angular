@@ -14,13 +14,16 @@ import { MessageService } from '../message.service';
 export class FormComponent implements OnInit {
 
   items: details;
+
   postitem: details;
   jsondata:details;
   radioItems= 'Great,Okay,Not good'.split(',');
   //model= { options: items.feedback };
   public List:{name:string, email:string, feedback:string, comment:string}[] = initial_values;
-  
-  constructor(private api: ApiService, private message: MessageService) { }  
+   
+  constructor(private api: ApiService, private message: MessageService) {
+    
+  }  
   getRequest(): void {
     this.api.getRequest().subscribe(details => this.items = details);
   }
@@ -33,8 +36,10 @@ export class FormComponent implements OnInit {
   public error: any; 
 
   err() { 
+    this.postRequest();
       return this.api.addpost(this.items).subscribe(details => {
           console.log(details);
+          this.error="";
       }, error => { // second parameter is to listen for error
           console.log(error);
           this.error = error;
@@ -42,6 +47,10 @@ export class FormComponent implements OnInit {
   }
   
   ngOnInit(): void {
+    //this.items.name="";
+    //this.items.email="";
+    //this.items.feedback="";
+    //this.items.comment="";
     this.getRequest();
     //this.jsondata= this.items;
     //this.postRequest();
