@@ -13,6 +13,7 @@ import { det } from '../det';
 })
 export class FormComponent implements OnInit {
   items: details;
+  getdata: details;
   display="";
   postitem: details;
   jsondata:details;
@@ -41,9 +42,10 @@ export class FormComponent implements OnInit {
           comment: details.comment,
           feedback: details.feedback
         });
-        //this.items=details
+        this.getdata=details;
       }
     );
+
   }
 
 

@@ -1,0 +1,26 @@
+@mixin themable($theme-name, $container-bg, $left-bg, $right-bg, $innertext, $button-bg) {
+    .#{$theme-name} {
+        
+ 
+            * {
+                color: $innertext;
+                font-size: 2rem;
+                background-color: $right-bg;
+                height: 100%;
+                position: relative;
+                width: 29%;
+ 
+            }
+ 
+            .left {
+                background-color: $left-bg;
+                height: 100%;
+                width: 69%;
+            }
+               
+            
+        }
+    }
+body{
+@include themable(theme-1, #f7eb80, #497265, #82aa91, #fff, #bc6a49);
+}
