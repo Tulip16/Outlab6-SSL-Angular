@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import initial_values from '../initial_values.json';
-import { HttpClient } from '@angular/common/http'; 
 import { details } from '../details';
 import { ApiService } from '../api.service';
 import { MessageService } from '../message.service';
@@ -14,7 +13,7 @@ import { MessageService } from '../message.service';
 export class FormComponent implements OnInit {
 
   items: details;
-
+  display="yes";
   postitem: details;
   jsondata:details;
   radioItems= 'Great,Okay,Not good'.split(',');
@@ -35,7 +34,8 @@ export class FormComponent implements OnInit {
 
   public error: any; 
 
-  err() { 
+  err() {
+    this.display="yes"; 
     this.postRequest();
       return this.api.addpost(this.items).subscribe(details => {
           console.log(details);
@@ -44,6 +44,15 @@ export class FormComponent implements OnInit {
           console.log(error);
           this.error = error;
       });
+  }
+
+  refresh(){
+    this.items.name="";
+    this.items.email="";
+    this.items.feedback="";
+    this.items.comment="";
+    this.display="";
+    this.error="err";
   }
   
   ngOnInit(): void {
