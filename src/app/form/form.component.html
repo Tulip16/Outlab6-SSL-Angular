@@ -1,44 +1,32 @@
+
 <body>
 <h3 class="logo">Forms</h3>
 <div id="form-box">
+  <form [formGroup]="profileForm">
   <label>
       Name:
-      <input [(ngModel)]="items.name" placeholder="name"/>
+      <input formControlName="name" placeholder="name"/>
     </label><br>
     <label>
       Email:
-      <input [(ngModel)]="items.email" placeholder="email"/>
+      <input formControlName="email" placeholder="email"/>
     </label><br>
     <label>
       Comments:
-      <input [(ngModel)]="items.comment" placeholder="comment"/>
-    </label><br>
+      <input formControlName="comment" placeholder="comment"/>
+    </label><br> 
   <label>
-    Feedback:
-    <label *ngFor="let item of radioItems">
-      <input type="radio" name="options" (click)="items.feedback = item" 
-      [checked]="item === items.feedback">
-      {{item}}
-    </label>
+    Feedback:  
+  <input type="radio" value='Great' formControlName="feedback" >Great 
+  <input type="radio" value='Okay' formControlName="feedback" >Okay 
+  <input type="radio" value='Not good' formControlName="feedback" >Not Good 
   </label>
+  <br>
+  <button type="submit" (click)='err()'>Submit</button>
+  <button type="refresh" (click)='refresh()'>Refresh</button>
+</form>
 </div>
 
-<button (click)="err()">Submit</button>
-<button (click)="refresh()">Refresh</button>
 
-<div class="flag" *ngIf="display">
-<div class="postitem" *ngIf="postitem else other">
-  <div class="error" *ngIf="error else success">Submission failed! Try again!</div>
-  <ng-template #success>
-    <div>Feedback registered!</div>
-  </ng-template>
-</div>
-<ng-template #other>
-  <div class="error" *ngIf="error">
-    Submission failed! You may want to enter valid inputs ;)
-  </div>
-</ng-template>
-</div>
-
-</body>
-
+  
+  
