@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import initial_values from '../initial_values.json';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { details } from '../details';
 import { ApiService } from '../api.service';
-import { MessageService } from '../message.service';
-import { det } from '../det';
+
 
 @Component({
   selector: 'app-form',
@@ -20,17 +18,17 @@ export class FormComponent implements OnInit {
   profileForm = new FormGroup({
     name: new FormControl(''),
     email: new FormControl(''),
-    comment: new FormControl(''),
-    feedback: new FormControl('')
+    feedback: new FormControl('',Validators.minLength(1)),
+    comment: new FormControl('')
   });
   //form: FormGroup;
   
 
-  radioItems= 'Great,Okay,Not good'.split(',');
+  //radioItems= 'Great,Okay,Not good'.split(',');
   //model= { options: items.feedback };
-  public List:{name:string, email:string, feedback:string, comment:string}[] = initial_values;
+  //public List:{name:string, email:string, feedback:string, comment:string}[] = initial_values;
    
-  constructor(private api: ApiService, private message: MessageService) {
+  constructor(private api: ApiService) {
   }  
   
   getRequest(): void {
@@ -39,8 +37,8 @@ export class FormComponent implements OnInit {
         this.profileForm.setValue({
           name: details.name,
           email: details.email,
-          comment: details.comment,
-          feedback: details.feedback
+          feedback: details.feedback,
+          comment: details.comment
         });
         this.getdata=details;
       }
@@ -59,19 +57,23 @@ err(){
     console.log(details);
     this.error=""
     //this.error="";
-    alert("Submission successful!");
+    if(details.feedback.length==0){
+      alert("Submission failed! You might want to enter valid inputs ;)");
+    }
+    else{
+      alert("Submission successful! \n Details posted are: \n Name: "+details.name+" \n Email: "+details.email+"\n Comments: "+details.comment+"\n Feedback: "+details.feedback);
+    }
 }, error => { // second parameter is to listen for error
     console.log(error);
     this.error = error;
-    alert("Submission failed! You might want to enter valid inputs ;)");
+    alert("Submission failed! You might want to enter valid inputs ;) \n (All fields except Comments must be filled) ");
 });
 
 
 }
 
 refresh(){
-  this.display="";
-  
+  this.display=""; 
   this.profileForm.setValue({
     name: "",
     email: "",

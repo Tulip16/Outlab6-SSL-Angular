@@ -17,13 +17,13 @@
     </label><br> 
   <label>
     Feedback:  
-  <input type="radio" value='Great' formControlName="feedback" >Great 
-  <input type="radio" value='Okay' formControlName="feedback" >Okay 
-  <input type="radio" value='Not good' formControlName="feedback" >Not Good 
+  <input type="radio" value='Great' required formControlName="feedback" >Great 
+  <input type="radio" value='Okay' required formControlName="feedback" >Okay 
+  <input type="radio" value='Not good' required formControlName="feedback" >Not Good 
   </label>
   <br>
-  <button type="submit" (click)='err()'>Submit</button>
-  <button type="refresh" (click)='refresh()'>Refresh</button>
+  <button type="submit" (click)='err()' style="margin-right:10px">Submit</button> 
+   <button type="refresh" (click)='refresh()'>Refresh</button>
 </form>
 <p style="font-size: 30px;">
   <br><br>

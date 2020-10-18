@@ -4,7 +4,6 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { det } from './det';
 import { details } from './details';
-import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,7 @@ export class ApiService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json'})
   };
-  constructor(private http: HttpClient, private message: MessageService) { 
+  constructor(private http: HttpClient) { 
    
     
   }
